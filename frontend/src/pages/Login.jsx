@@ -89,9 +89,9 @@ export default function LoginPage() {
           </div>
           <div className="max-w-md">
             <h1 className="text-4xl xl:text-5xl font-bold leading-tight tracking-tight">
-              Banking infrastructure built for the modern enterprise.
+              Banking infrastructure <br /> built for the modern enterprise.
             </h1>
-            <p className="mt-4 text-slate-300 text-base leading-relaxed">
+            <p className="mt-4 text-slate-300 text-[15px] leading-relaxed">
               Manage customers, accounts, transactions, deposits and loans — all
               from a secure, modular monolith powered by Spring Boot 3.3 and PostgreSQL.
             </p>
@@ -101,8 +101,9 @@ export default function LoginPage() {
               <div className="flex items-center gap-3"><span className="h-1.5 w-1.5 rounded-full bg-amber-400" /> FD, RD, loans with EMI scheduling</div>
             </div>
           </div>
-          <div className="text-xs text-slate-400">© {new Date().getFullYear()} EBCS · All rights reserved</div>
-        </div>
+         <div className="text-xs text-slate-400">© {new Date().getFullYear()} EBCS · All rights reserved</div>
+        <div className="mb-2 text-center"><p className="text-xs text-slate-300 tracking-wide">Made with<span className="mx-1 text-red-500">❤️</span>by<span className="font-semibold text-white">Anand Sagar</span></p></div>
+      </div>
       </div>
 
       {/* Right form panel */}
@@ -142,7 +143,7 @@ export default function LoginPage() {
                 <div>
                   <div className="flex items-center justify-between">
                     <Label htmlFor="password">Password</Label>
-                    <Link to="/register" className="text-xs text-primary hover:underline">Create account</Link>
+                    
                   </div>
                   <div className="relative">
                     <Input
@@ -178,8 +179,11 @@ export default function LoginPage() {
                   {submitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
                   Sign in
                 </Button>
+
+                <div className="mt-5 text-center"><span className="text-sm text-muted-foreground">Don't have an account?{" "} </span><Link to="/register" className="text-sm hover:underline font-medium">Create account</Link></div>
+
                 <div className="text-center text-xs text-muted-foreground">
-                  Default admin: <b>admin</b> / <b>admin123</b>
+                  Default admin: <b>admin</b>  <b></b>
                 </div>
               </form>
             </>
