@@ -1,0 +1,56 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: ebcs-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ebcs
+      POSTGRES_USER: ebcs
+      POSTGRES_PASSWORD: ebcs
+    ports:
+      - "5432:5432"
+    volumes:
+      - ebcs-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ebcs -d ebcs"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ebcs-backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: 8080
+      DB_URL: jdbc:postgresql://postgres:5432/ebcs
+      DB_USER: ebcs
+      DB_PASSWORD: ebcs
+      JWT_SECRET: ${JWT_SECRET:-please-change-me-to-a-long-random-secret-for-production-use-only}
+      DOC_STORAGE_PATH: /var/ebcs-docs
+    volumes:
+      - ebcs-docs:/var/ebcs-docs
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        REACT_APP_BACKEND_URL: ${PUBLIC_BACKEND_URL:-http://localhost:8080}
+    container_name: ebcs-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+
+volumes:
+  ebcs-pgdata:
+  ebcs-docs:

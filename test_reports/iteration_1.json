@@ -1,0 +1,70 @@
+{
+  "summary": "Tested the 4 new EBCS features end-to-end (MFA login challenge, password reset OTP flow, OCR pipeline, WebSocket live push) via 13 pytest cases against the live preview URL + Playwright UI flows on /login, /forgot-password, dashboard and /customers/3 KYC tab. 12/13 backend cases and all 4 frontend flows pass. One CRITICAL security bug found: the MFA challenge JWT (purpose=mfa-challenge) is accepted as a full access token on protected endpoints, completely bypassing MFA. Two minor deviations from spec also documented.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "JWT auth filter (GET /api/customers, /api/accounts, etc.)",
+        "issue": "MFA bypass: JWT issued with claim purpose='mfa-challenge' (the challengeToken returned from /api/auth/login when MFA is enabled) is accepted as a valid access token on all protected endpoints. GET /api/customers with Authorization: Bearer <challengeToken> returns 200 instead of 401/403. Anyone with valid username/password can therefore skip the TOTP step entirely. The security filter/JwtAuthenticationFilter must reject tokens whose `purpose` claim is not 'access'.",
+        "priority": "CRITICAL"
+      }
+    ],
+    "minor": [
+      {
+        "endpoint": "POST /api/auth/verify-otp, POST /api/auth/reset-password",
+        "issue": "Returns HTTP 422 (Unprocessable Entity) for business validation errors ('Incorrect code. N attempt(s) remaining.', 'No active reset code', 'Reset session expired.'). Review request specifies HTTP 400. Behaviour/messages are otherwise correct. Either accept 422 in spec or change error handler to 400 for these three cases."
+      },
+      {
+        "endpoint": "POST /api/documents (versioning + OCR)",
+        "issue": "Uploading a NEW version of an existing (ownerType, ownerId, docType) document while the OCR feature flag is OFF does NOT reset the document's ocrText/ocrStatus fields; GET /api/documents/{id} still returns the stale COMPLETED status/text from the previous version. New file bytes are replaced but OCR metadata is not — expected behaviour would be to clear ocrText and set ocrStatus=NONE for the new version when flag is off (or re-OCR when on). Workaround in tests: use unique docType per upload."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "ForgotPassword.jsx step-otp",
+        "issue": "After submitting an incorrect OTP the toast 'Incorrect code. N attempt(s) remaining.' appears (good), but the 6-digit input keeps the previously entered value (observed '000000' still in the field). Spec required OTP field to clear on error.",
+        "selector": "[data-testid='fp-step-otp'] input",
+        "priority": "LOW"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {
+        "screen": "Dashboard",
+        "issues": [
+          "Multiple recharts warnings in console: 'The width(-1) and height(-1) of chart should be greater than 0'. Non-blocking but noisy; likely a container that renders before layout is measured (add ResizeObserver or minWidth/minHeight on chart wrapper)."
+        ]
+      }
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/backend_test.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "CRITICAL: Fix JwtAuthenticationFilter to reject JWTs whose 'purpose' claim is not 'access' (or is 'mfa-challenge'/'password-reset'). Add tests to ensure challenge tokens cannot access /api/**.",
+    "Decide on 400 vs 422 for password-reset validation errors; either align backend to 400 or update PRD.",
+    "Reset ocrText/ocrStatus when a new document version is uploaded (or re-run OCR based on the feature flag at upload time).",
+    "Clear the fp-step-otp input value after an incorrect code submission.",
+    "Suppress or fix recharts width/height warnings on Dashboard."
+  ],
+  "critical_code_review_comments": [
+    "Missing purpose-claim enforcement in JWT filter is a P0 security bug — the whole MFA feature is bypassable.",
+    "Document versioning silently leaves stale OCR metadata; violates least-astonishment for consumers of GET /api/documents/{id}.",
+    "Backend uses 422 for domain validation errors while the frontend/spec expects 400 — inconsistency between REST error model and API contract."
+  ],
+  "updated_files": [
+    "/app/backend/tests/backend_test.py (new)"
+  ],
+  "success_rate": {
+    "backend": "92% (12/13 pytest cases)",
+    "frontend": "100% (all UI flows verified: MFA challenge, Forgot password 3-step, WS live badge + event banner, OCR badge + doc-ocr-text-*)"
+  },
+  "test_credentials": "admin / admin123. anandsagar / changeme123 (email anandsagar.infinity366@gmail.com — only email eligible for Resend delivery). Postgres ebcs/ebcs@localhost:5432/ebcs. MFA cleaned up (disabled) after tests. OCR feature flag left ON.",
+  "seed_data_creation": "Uploaded 4 test PNGs + 1 test PDF to customer id=3 across doc types OCR_TEST_ON, OCR_TEST_OFF, OCR_RETRY_DIS, OCR_RETRY_IMG, OCR_RETRY_PDF. Password_reset_otps rows for anandsagar.infinity366@gmail.com and nobody-xyz-123@example.com. Several deposits ($10, $25) into account id=2 for WS-broadcast tests.",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "backend_test.py runs against REACT_APP_BACKEND_URL. It requires admin's MFA to be DISABLED at start; if a prior run left MFA enabled fetch the secret from `SELECT secret FROM user_mfa WHERE username='admin' AND enabled=true;` and complete login-verify+DELETE /api/security/mfa before rerunning. Rate limiter is 20/min on /api/auth/login; pytest sequential run is fine. Do NOT set `-n auto` — session-scope admin_token gets confused across MFA state. Only remaining failing test is TestMFA::test_full_mfa_challenge_flow because of the CRITICAL security bug above; once fixed, all 13 should pass.",
+  "rca of the issue": "MFA bypass RCA — the login endpoint issues two JWT flavours signed with the SAME key: an access token (purpose=access, 24h) and an MFA challenge token (purpose=mfa-challenge, 5min). The Spring Security JWT filter only validates signature/expiration and populates the SecurityContext with the sub+roles. It never inspects the `purpose` claim, so ANY well-formed JWT with a valid signature (including challenge tokens and — likely — password-reset tokens) grants full access. Reproduction: (1) Enable MFA on admin. (2) POST /api/auth/login -> receive {challengeToken}. (3) GET /api/customers with Authorization: Bearer <challengeToken> -> 200. Fix: in JwtAuthenticationFilter (or JwtService.validate), reject tokens whose purpose claim is not exactly 'access'. Also verify password-reset purpose tokens are similarly not accepted."
+}
