@@ -290,7 +290,7 @@ Enterprise Banking Core System (EBCS) was developed to bridge the gap between ac
 Enterprise Banking Core System (EBCS) follows a **Modular Monolith Architecture**, where each business domain is organized as an independent module while remaining part of a single deployable application. This architecture simplifies development and deployment while maintaining clear separation of concerns and allowing future evolution toward microservices if required.
 
 ---
-
+```
                         ┌─────────────────────────────┐
                         │        React Frontend       │
                         │        (React 19)           │
@@ -317,7 +317,7 @@ Enterprise Banking Core System (EBCS) follows a **Modular Monolith Architecture*
       │
       ▼
  Flyway Migrations
- 
+ ```
 
  ---
 
