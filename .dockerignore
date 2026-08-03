@@ -1,5 +1,48 @@
+# ==========================================================
+# EBCS - Enterprise Banking Core System
+# Docker Ignore
+# ==========================================================
+
+# Git
+.git
+.gitignore
+.gitattributes
+.github/
+
+# Documentation
+README.md
+docs/
+
+# IDE
+.idea/
+.vscode/
+
+# Java
 target/
-*.log
-.env
-build/
+*.class
+
+# React
+frontend/node_modules/
+frontend/build/
 node_modules/
+build/
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Tests
+test-output/
+coverage/
+
+# Temporary
+*.tmp
+*.temp
