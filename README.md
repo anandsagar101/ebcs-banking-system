@@ -6,9 +6,74 @@
   <img src="docs/assets/banner.svg" alt="EBCS — Enterprise Banking Core System" width="100%" />
 </p>
 
+# Enterprise Banking Core System (EBCS)
+
 <p align="center">
-  <b>A production-grade, modular core banking platform.</b><br/>
+  <b>A production-inspired, enterprise-scale core banking platform built with Spring Boot, React, PostgreSQL, and modern software architecture principles.</b><br/>
   Customers · Accounts · Transactions · Deposits · Loans · Double-entry Ledger — behind a real-time React console.
+</p>
+
+Enterprise Banking Core System (EBCS) is a full-stack reference implementation of a modern banking platform designed to demonstrate enterprise-grade software engineering practices. The project integrates secure banking operations, modular architecture, real-time communication, and production-oriented development workflows into a single banking ecosystem.
+
+<p align="center">
+
+<a href="https://ebcs-banking-system.vercel.app/login">
+<img src="https://img.shields.io/badge/🚀_Live_Demo-Visit_Application-2563EB?style=for-the-badge">
+</a>
+
+<a href="./docs">
+    <img src="https://img.shields.io/badge/📖_Documentation-Explore_Project_Docs-16A34A?style=for-the-badge" />
+</a>
+
+<a href="https://ebcs-backend.onrender.com/swagger-ui.html">
+    <img src="https://img.shields.io/badge/📡_API-Swagger_UI-EF4444?style=for-the-badge" />
+</a>
+
+
+| **Frontend Deployment** | Vercel |
+| **Backend Deployment** | Render |
+| **Database** | Neon PostgreSQL |
+| **Containerization** | Docker Compose |
+
+## 🌐 Live Deployment
+
+| Service | Status | URL |
+|----------|:------:|-----|
+| 🌍 Frontend | ✅ Live | https://ebcs-banking-system.vercel.app/login |
+| ⚙️ Backend API | ✅ Live | https://ebcs-backend.onrender.com |
+| 📡 Swagger UI | ✅ Live | https://ebcs-backend.onrender.com/swagger-ui.html |
+
+> **The complete application is publicly deployed and can be evaluated without any local installation or configuration.**
+
+## ⚡ Quick Evaluation
+
+Reviewers can evaluate the project in three different ways:
+
+- 🌐 Explore the live application through the deployed frontend.
+- 📡 Inspect and test REST APIs using the interactive Swagger UI.
+- 💻 Run the complete system locally using Docker Compose.
+
+## 🚀 Demo Credentials
+
+To help recruiters and reviewers explore the application without creating their own account, a demo environment is available.
+
+| Role | User Name | Password |
+|------|-----------|----------|
+| Administrator / Bank Manager | admin | Admin@123 |
+| Banking Officer / Bank Staff | anand | Anand@123 |
+
+> These credentials provide access to a sandbox environment for evaluation purposes only. Demo data may be reset periodically.
+
+## 💻 Local Development
+
+Prefer running locally?
+
+The project can be started with a single Docker Compose command.
+
+```bash
+docker compose up --build
+```
+
 </p>
 
 <p align="center">
@@ -21,463 +86,810 @@
   <img alt="PRs" src="https://img.shields.io/badge/PRs-welcome-818CF8">
 </p>
 
+
+| Category | Details |
+|----------|----------|
+| **Project Type** | Enterprise Banking Platform |
+| **Architecture** | Modular Monolith |
+| **Language** | Java 21 |
+| **Backend Framework** | Spring Boot 3.3.5 |
+| **Frontend Framework** | React 19 |
+| **Database** | PostgreSQL with Flyway Migrations |
+| **Authentication** | Spring Security + JWT + MFA |
+| **Communication** | REST APIs + WebSocket (STOMP) |
+| **Deployment** | Vercel • Render • Neon |
+| **Containerization** | Docker & Docker Compose |
+| **API Documentation** | OpenAPI (Swagger) |
+| **Build Tool** | Maven |
+
+
 ---
 
-## Table of Contents
+## 📚 Table of Contents
 
-- [Overview](#overview)
-- [Feature Highlights](#feature-highlights)
-- [Architecture](#architecture)
-- [Tech Stack](#tech-stack)
-- [Domain Modules](#domain-modules)
-- [API Reference](#api-reference)
-- [Security](#security)
-- [Real-time & Events](#real-time--events)
-- [Data & Persistence](#data--persistence)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [Configuration](#configuration)
-- [Testing](#testing)
-- [Deployment](#deployment)
-- [Observability](#observability)
-- [Contributing](#contributing)
-- [License](#license)
+- [Project Introduction](#-project-introduction)
+- [Key Highlights](#-key-highlights)
+- [Core Features](#-core-features)
+- [System Architecture Overview](#-system-architecture-overview)
+- [Technology Stack](#-technology-stack)
+- [Project Structure](#-project-structure)
+- [Business Modules](#-business-modules)
+- [Database Overview](#-database-overview)
+- [Security Architecture](#-security-architecture)
+- [API Overview](#-api-overview)
+- [Deployment Architecture](#-deployment-architecture)
+- [Installation](#-installation)
+- [Local Development](#-local-development)
+- [Docker Deployment](#-docker-deployment)
+- [Environment Configuration](#-environment-configuration)
+- [Testing](#-testing)
+- [Documentation](#-documentation)
+- [Roadmap](#-roadmap)
+- [Contributing](#-contributing)
+- [License](#-license)
+- [Author](#-author)
 
 ---
 
 ## Overview
 
-**EBCS (Enterprise Banking Core System)** is a full-stack reference implementation of a retail
-core banking platform. The backend is a **Spring Boot 3.3.5 / Java 21** application organised into
-isolated **bounded contexts** (accounts, customers, transactions, deposits, loans, ledger, and more),
-each with its own controller, service, domain, and repository layers. Every balance-affecting operation
-is recorded through a **double-entry ledger**, and money movement is streamed to connected clients over
-**WebSocket** in real time.
+## 📖 Project Introduction
 
-The frontend is a **React 19** single-page banking console built on `shadcn/ui`, TanStack Query, and
-Tailwind CSS, covering customer onboarding, KYC, account servicing, lending, reporting, and full
-administrative control.
+Enterprise Banking Core System (EBCS) is a production-inspired, full-stack banking platform that demonstrates how modern banking software can be engineered using enterprise software development practices.
 
-The entire stack — PostgreSQL, backend, and frontend — runs with a single `docker compose up`.
+Unlike traditional banking management projects that primarily focus on CRUD operations, EBCS is designed around a modular monolith architecture with clear separation of concerns, secure authentication, real-time communication, database versioning, and production-ready deployment workflows.
 
-> **At a glance:** 146 Java source files · 17 REST controllers · 19 domain services · 22 repositories · 98 React files · 25 screens.
+The platform simulates the core components of a digital banking ecosystem, including customer management, account operations, transactions, loans, deposits, authentication, authorization, and administrative controls, while emphasizing maintainability, scalability, security, and clean software architecture.
+
+The primary objective of this project is not only to build banking features, but also to showcase how enterprise-grade backend systems are structured, developed, documented, deployed, and maintained using modern Java and React technologies.
+---
+
+## ✨ Key Highlights
+
+- 🏦 **Production-Inspired Banking Platform** built using modern enterprise software engineering practices.
+- 🧩 **Modular Monolith Architecture** with clear separation of business domains and responsibilities.
+- 🔐 **Enterprise Security** powered by Spring Security, JWT authentication, Role-Based Access Control (RBAC), and Multi-Factor Authentication (MFA).
+- ⚡ **Real-Time Communication** using WebSocket (STOMP) for live banking updates and notifications.
+- 🗄️ **Database Version Control** with Flyway migration management for reliable schema evolution.
+- 📡 **RESTful API Architecture** with interactive OpenAPI (Swagger) documentation.
+- 🐳 **Containerized Deployment** using Docker and Docker Compose.
+- ☁️ **Cloud-Native Deployment** with React hosted on Vercel, Spring Boot deployed on Render, and PostgreSQL managed by Neon.
+- 📊 **Production-Oriented Documentation** following enterprise documentation standards.
+- 🧪 **Testable Architecture** designed for maintainability, scalability, and future expansion.
+
+
+## 🎯 Enterprise Engineering Practices
+
+This project follows software engineering practices commonly adopted in enterprise application development:
+
+- Domain-driven modular organization
+- Layered backend architecture
+- Database migration management
+- Secure authentication and authorization
+- API-first backend development
+- Environment-based configuration
+- Production deployment workflow
+- Version-controlled documentation
+- Clean repository organization
+- Maintainable and scalable project structure
+
+## 🚀 Project Status
+
+| Area | Status |
+|------|:------:|
+| Backend Development | ✅ Complete |
+| Frontend Development | ✅ Complete |
+| Authentication & Authorization | ✅ Complete |
+| REST APIs | ✅ Complete |
+| Database Design | ✅ Complete |
+| Cloud Deployment | ✅ Live |
+| Docker Support | ✅ Available |
+| Documentation | 🚧 In Progress |
+| CI/CD Pipeline | 📅 Planned |
+
+
+### 🎯 Project Objectives
+
+- Build a production-inspired enterprise banking platform.
+- Demonstrate modern Spring Boot backend architecture.
+- Implement secure authentication and authorization using JWT and Spring Security.
+- Design a modular, maintainable, and scalable codebase.
+- Showcase enterprise software engineering practices suitable for real-world applications.
+- Provide a complete full-stack reference project for learning and portfolio purposes.
+
+### 💡 Why This Project?
+
+Modern banking software is significantly more complex than simple account management systems. It requires secure authentication, robust transaction processing, modular architecture, API-first development, database migration strategies, observability, deployment automation, and maintainable code organization.
+
+Enterprise Banking Core System (EBCS) was developed to bridge the gap between academic banking projects and production-oriented enterprise applications by implementing industry-standard technologies, architecture patterns, and engineering workflows within a single full-stack platform.
+
+
+
+## 🚀 Core Features
+
+### 🏦 Banking Operations
+
+- Customer onboarding and profile management
+- Multi-account management
+- Secure fund transfers
+- Transaction history and tracking
+- Deposit management
+- Loan management
+- Administrative banking operations
+
+### 🔐 Authentication & Security
+
+- JWT-based authentication
+- Role-Based Access Control (RBAC)
+- Spring Security integration
+- Multi-Factor Authentication (MFA)
+- Protected REST APIs
+- Secure password handling
+- Stateless authentication architecture
+
+### ⚙️ Backend Engineering
+
+- Spring Boot 3.3.5
+- Java 21
+- Modular Monolith Architecture
+- RESTful API Design
+- OpenAPI (Swagger) Documentation
+- Flyway Database Migrations
+- Global Exception Handling
+- Validation Framework
+
+### 🌐 Frontend Experience
+
+- Modern React 19 Interface
+- Responsive Banking Dashboard
+- Protected Routes
+- Real-Time UI Updates
+- Interactive Data Visualization
+- Form Validation
+- Reusable Component Architecture
+
+### ☁️ Deployment & Infrastructure
+
+- Frontend deployed on Vercel
+- Backend deployed on Render
+- PostgreSQL hosted on Neon
+- Docker Compose support
+- Environment-based configuration
+- Cloud-ready architecture
+
+### 📚 Documentation
+
+- Enterprise README
+- Deployment Guide
+- Changelog
+- Contribution Guidelines
+- Security Policy
+- Code of Conduct
+- Enterprise Documentation Roadmap
+
+## 📌 Feature Availability
+
+| Module | Status |
+|---------|--------|
+| Authentication | ✅ Available |
+| Customer Management | ✅ Available |
+| Account Management | ✅ Available |
+| Transactions | ✅ Available |
+| Loans | ✅ Available |
+| Deposits | ✅ Available |
+| REST APIs | ✅ Available |
+| Swagger Documentation | ✅ Available |
+| Docker Deployment | ✅ Available |
+| Cloud Deployment | ✅ Available |
+
 
 ---
 
-## Feature Highlights
+## 🏗️ System Architecture Overview
 
-**Banking operations**
-- Customer master with **KYC** lifecycle (`PENDING → VERIFIED / REJECTED`)
-- Account opening, balance enquiry, and status management
-- Transactions: **deposit, withdrawal, transfer, IMPS**, and reference-based **reversal**
-- **Fixed & recurring deposits** with booking and lookup
-- End-to-end **loan lifecycle**: apply → approve/reject → disburse → **EMI schedule** → settle
-- **Double-entry ledger** — every transaction produces balanced debit/credit entries per account
-- Configurable banking **products** and product types
+Enterprise Banking Core System (EBCS) follows a **Modular Monolith Architecture**, where each business domain is organized as an independent module while remaining part of a single deployable application. This architecture simplifies development and deployment while maintaining clear separation of concerns and allowing future evolution toward microservices if required.
 
-**Platform**
-- Stateless **JWT** authentication with an optional second factor
-- **TOTP-based MFA** (authenticator-app enrolment, verification, and login challenge)
-- **Password-reset via OTP** with TTL, resend cooldown, and attempt limits
-- **Session & device management** — login history, trusted devices, remote revocation
-- **Rate limiting** on authentication endpoints
-- **Audit trail** on every mutating action
-- **Document management** with versioning, preview, and **OCR** (Tesseract)
-- Multi-channel **notifications** (email / SMS / push) with per-user preferences
-- **Reporting & analytics** — portfolio overview, customer growth, transaction analytics, revenue
-- **Feature flags** and runtime **configuration** administered via API
-- **Real-time balance push** over STOMP/WebSocket
-- Interactive **OpenAPI / Swagger UI** and **Actuator** health, info, and metrics
+                        ┌─────────────────────────────┐
+                        │        React Frontend       │
+                        │        (React 19)           │
+                        └──────────────┬──────────────┘
+                                       │
+                              REST API │ WebSocket
+                                       │
+                        ┌──────────────▼──────────────┐
+                        │      Spring Boot API        │
+                        │      Modular Monolith       │
+                        └──────────────┬──────────────┘
+                                       │
+      ┌──────────────┬──────────────┬──────────────┬──────────────┐
+      │              │              │              │              │
+      ▼              ▼              ▼              ▼              ▼
+ Authentication   Customers      Accounts     Transactions     Administration
+      │
+      ▼
+ Spring Security
+ JWT + RBAC + MFA
+      │
+      ▼
+ PostgreSQL (Neon)
+      │
+      ▼
+ Flyway Migrations
 
----
+ ### 🧩 Architectural Characteristics
 
-## Architecture
+- Modular Monolith Architecture
+- Layered Backend Design
+- Domain-Oriented Organization
+- Stateless REST APIs
+- JWT-Based Authentication
+- Role-Based Access Control (RBAC)
+- Database Versioning with Flyway
+- OpenAPI (Swagger) Integration
+- WebSocket-Based Real-Time Communication
+- Cloud-Ready Deployment
 
-EBCS follows a **layered, event-driven, modular-monolith** design. Requests flow top-to-bottom through
-a security filter chain, REST controllers, domain services, the domain model, and the persistence layer.
-Cross-cutting concerns (async execution, domain events, audit, WebSocket, error handling) live in a
-shared **platform** module, and all outbound side-effects go through **integration adapters**.
+### 📦 High-Level Request Flow
 
-<p align="center">
-  <img src="docs/assets/architecture.svg" alt="EBCS system architecture" width="100%" />
-</p>
-
-**Design principles**
-
-- **Bounded contexts** — each business capability (`account`, `loan`, `ledger`, …) is a self-contained
-  package with `controller` / `application` / `domain` / `dto` / `repository` slices. Contexts communicate
-  through **domain events** rather than reaching into each other's internals.
-- **Double-entry integrity** — the `ledger` module is the single source of truth for money movement; every
-  `MoneyMovedEvent` is projected into balanced ledger entries.
-- **Event-driven side-effects** — registration, account opening, loan approval, and money movement publish
-  Spring application events that notification, audit, and WebSocket listeners react to asynchronously.
-- **Stateless & horizontally scalable** — JWT-based auth means no server session state; the app scales out
-  behind a load balancer.
-
----
-
-## Tech Stack
-
-| Layer            | Technology |
-|------------------|------------|
-| **Language**     | Java 21 |
-| **Framework**    | Spring Boot 3.3.5 (Web, Validation, Data JPA, Security, WebSocket, Actuator) |
-| **Auth**         | Spring Security · JJWT · TOTP (commons-codec) |
-| **Persistence**  | PostgreSQL 15 · Hibernate · Flyway · H2 (tests) |
-| **API docs**     | springdoc-openapi (Swagger UI) |
-| **Build**        | Maven (`com.ebcs:ebcs-backend:1.0.0`) |
-| **Frontend**     | React 19 · React Router 7 · CRA + CRACO |
-| **Data/UI**      | TanStack Query · SWR · Axios · react-hook-form + Zod |
-| **Design system**| Tailwind CSS 3 · shadcn/ui (Radix UI) · Framer Motion · lucide-react |
-| **Charts/Export**| Recharts · jsPDF · SheetJS (xlsx) · file-saver |
-| **Realtime**     | STOMP over SockJS (`@stomp/stompjs`) |
-| **Runtime**      | Docker (multi-stage) · nginx (frontend) · Docker Compose |
-
----
-
-## Domain Modules
-
-Backend packages under `com.ebcs`:
-
-| Module           | Responsibility |
-|------------------|----------------|
-| `account`        | Account opening, balances, and account lifecycle status |
-| `customer`       | Customer master data and KYC state |
-| `product`        | Bank products and product types |
-| `transaction`    | Deposits, withdrawals, transfers, IMPS, and reversals |
-| `deposit`        | Fixed and recurring deposit booking and servicing |
-| `loan`           | Origination, approval, disbursement, EMI schedules, settlement |
-| `ledger`         | Double-entry ledger — debit/credit entries per account & transaction |
-| `document`       | Uploads, versioning, preview, download, and OCR extraction |
-| `notification`   | In-app + email/SMS/push delivery with per-user preferences |
-| `reports`        | Portfolio overview, growth, transaction analytics, revenue estimates |
-| `administration` | App users, roles, runtime configuration, feature flags |
-| `security`       | MFA (TOTP), password-reset OTP, rate limiting, sessions & devices |
-| `platform`       | JWT authentication, audit, async execution, domain events, WebSocket |
-| `integration`    | Outbound adapters — email, SMS, UPI |
-| `shared`         | Base audit entity, API error model, global exception handling |
-
----
-
-## API Reference
-
-All endpoints are served under the `/api` prefix. Explore them interactively at
-**`/swagger-ui.html`** once the backend is running.
-
-### Authentication — `/api/auth`
-| Method | Path | Description |
-|--------|------|-------------|
-| `POST` | `/register` | Register a new user |
-| `POST` | `/login` | Authenticate and receive a JWT (or an MFA challenge) |
-| `POST` | `/mfa/login-verify` | Complete login by verifying the MFA code |
-| `POST` | `/change-password` | Change password for the current user |
-| `POST` | `/forgot-password` | Start OTP-based password reset |
-| `POST` | `/resend-otp` | Resend the reset OTP (respects cooldown) |
-| `POST` | `/verify-otp` | Verify a reset OTP |
-| `POST` | `/reset-password` | Complete the password reset |
-
-### Customers — `/api/customers`
-| Method | Path | Description |
-|--------|------|-------------|
-| `GET`  | `/` | List customers |
-| `GET`  | `/{id}` | Get a customer |
-| `POST` | `/` | Create a customer |
-| `PUT`  | `/{id}` | Update a customer |
-| `PUT`  | `/{id}/kyc` | Update KYC status |
-
-### Accounts — `/api/accounts`
-| Method | Path | Description |
-|--------|------|-------------|
-| `GET`  | `/` | List accounts |
-| `GET`  | `/{id}` | Get an account |
-| `GET`  | `/customer/{customerId}` | Accounts for a customer |
-| `GET`  | `/{id}/balance` | Current balance |
-| `POST` | `/` | Open an account |
-
-### Transactions — `/api/transactions`
-| Method | Path | Description |
-|--------|------|-------------|
-| `POST` | `/deposit` | Deposit funds |
-| `POST` | `/withdraw` | Withdraw funds |
-| `POST` | `/transfer` | Internal transfer |
-| `POST` | `/imps` | IMPS transfer |
-| `POST` | `/reverse/{reference}` | Reverse a transaction |
-| `GET`  | `/` | List transactions |
-| `GET`  | `/{reference}` | Get a transaction by reference |
-
-### Deposits — `/api/deposits`
-| Method | Path | Description |
-|--------|------|-------------|
-| `POST` | `/fixed` · `/recurring` | Book a fixed / recurring deposit |
-| `GET`  | `/fixed` · `/recurring` | List deposits |
-| `GET`  | `/fixed/{id}` · `/recurring/{id}` | Get a deposit |
-
-### Loans — `/api/loans`
-| Method | Path | Description |
-|--------|------|-------------|
-| `GET`  | `/` · `/{id}` | List / get loans |
-| `POST` | `/` | Apply for a loan |
-| `POST` | `/{id}/approve` · `/{id}/reject` | Approve / reject |
-| `POST` | `/{id}/disburse` · `/{id}/settle` | Disburse / settle |
-| `GET`  | `/{id}/schedule` | EMI repayment schedule |
-
-### Ledger — `/api/ledger`
-| Method | Path | Description |
-|--------|------|-------------|
-| `GET`  | `/account/{accountId}` | Ledger entries for an account |
-| `GET`  | `/transaction/{ref}` | Ledger entries for a transaction |
-
-### Documents — `/api/documents`
-| Method | Path | Description |
-|--------|------|-------------|
-| `POST` | `/` | Upload a document (multipart) |
-| `GET`  | `/` · `/{id}` | List / get documents |
-| `GET`  | `/{id}/versions` | Version history |
-| `GET`  | `/{id}/download` · `/{id}/preview` | Download / preview |
-| `POST` | `/{id}/ocr` | Run OCR extraction |
-
-### Notifications — `/api/notifications`
-| Method | Path | Description |
-|--------|------|-------------|
-| `GET`  | `/` | List notifications |
-| `GET`  | `/unread-count` | Unread count |
-| `POST` | `/{id}/read` | Mark as read |
-| `GET`  | `/preferences` · `PUT /preferences` | Read / update channel preferences |
-
-### Reports — `/api/reports`
-| Method | Path | Description |
-|--------|------|-------------|
-| `GET`  | `/overview` | Portfolio snapshot |
-| `GET`  | `/customers/growth?months=` | Customer growth series |
-| `GET`  | `/transactions/analytics?days=` | Transaction analytics |
-| `GET`  | `/deposits` · `/loans` | Deposit / loan summaries |
-| `GET`  | `/revenue?months=` | Revenue estimate |
-
-### Security & Admin
-| Method | Path | Description |
-|--------|------|-------------|
-| `GET`  | `/api/security/login-history` | Login history |
-| `GET`  | `/api/security/devices` | Known devices |
-| `POST` | `/api/security/devices/{id}/trust` · `/revoke` | Trust / revoke a device |
-| `GET`  | `/api/security/mfa/status` | MFA status |
-| `POST` | `/api/security/mfa/enroll` · `/verify` | Enrol / verify MFA |
-| `DELETE`| `/api/security/mfa` | Disable MFA |
-| `GET`  | `/api/admin/audit` | Audit log |
-| `GET`/`PUT` | `/api/admin/config` | Runtime configuration |
-| `GET`  | `/api/admin/users` · `/{id}` | User administration |
-| `GET`/`PUT` | `/api/admin/feature-flags` | Feature flags |
-
----
-
-## Security
-
-- **JWT** bearer tokens (HS256, configurable secret, issuer `ebcs-backend`, 24h default expiry) issued at login
-  and validated by `JwtAuthenticationFilter`.
-- **MFA (TOTP)** — users enrol an authenticator app; when enabled, `/login` returns a challenge completed via
-  `/mfa/login-verify`.
-- **Password reset** — OTP flow with configurable TTL (300s), resend cooldown (60s), and max attempts (5).
-- **Rate limiting** — `RateLimitFilter` throttles auth traffic (20 req/min default).
-- **Sessions & devices** — every login is recorded; devices can be trusted or revoked remotely.
-- **Audit** — `AuditService` persists an `AuditLog` entry for mutating operations.
-- **CORS** configurable via `CORS_ALLOWED_ORIGINS`.
-- **Hardened container** — the backend image runs as a non-root user (`uid 10001`) with a healthcheck.
-
-> Change `JWT_SECRET` and all default credentials before any non-local deployment.
-
----
-
-## Real-time & Events
-
-Domain operations publish Spring application events — `CustomerRegisteredEvent`, `AccountOpenedEvent`,
-`MoneyMovedEvent`, `LoanApprovedEvent`, `LoanDisbursedEvent`, `UserLoggedInEvent` — that are handled
-**asynchronously** by dedicated listeners:
-
-- **Notifications** — `NotificationEventListener` fans events out to email/SMS/push providers.
-- **Real-time balances** — `BalancePushListener` streams balance updates to subscribed clients over
-  STOMP/WebSocket; the React console consumes them through the `useStomp` hook.
-- **Audit** — mutations are captured into the audit log.
-
----
-
-## Data & Persistence
-
-- **PostgreSQL 15** is the primary datastore; schema is owned and versioned by **Flyway**
-  (`V1__init.sql`, `V2__enterprise.sql`, `V3__features.sql`) under `src/main/resources/db/migration`.
-- `ddl-auto: validate` — Hibernate never mutates schema; migrations are the source of truth.
-- All entities extend `BaseAuditEntity` for consistent auditing columns.
-- **H2** backs the test profile for fast, isolated integration tests.
-- Timestamps are stored and served in **UTC**.
-
----
-
-## Project Structure
-
+```text
+User
+   │
+   ▼
+React Frontend
+   │
+   ▼
+Spring Boot REST API
+   │
+   ▼
+Spring Security
+   │
+   ▼
+Business Module
+   │
+   ▼
+JPA Repository
+   │
+   ▼
+PostgreSQL Database
 ```
-ebcs/
-├── Dockerfile                     # Multi-stage backend image (Temurin 21, non-root)
-├── docker-compose.yml             # postgres + backend + frontend
-├── pom.xml
-├── src/
+
+> **Design Note:** The current implementation follows a modular monolith architecture to maximize maintainability, simplify deployment, and support future migration toward independently deployable services if business requirements evolve.
+
+
+
+## 🛠️ Technology Stack
+
+| Category | Technologies |
+|----------|--------------|
+| **Backend** | Java 21, Spring Boot 3.3.5, Spring MVC, Spring Data JPA |
+| **Frontend** | React 19, React Router, React Query, Tailwind CSS, Radix UI |
+| **Database** | PostgreSQL, Flyway |
+| **Security** | Spring Security, JWT Authentication, RBAC, MFA |
+| **API** | RESTful APIs, OpenAPI (Swagger) |
+| **Real-Time Communication** | WebSocket (STOMP), SockJS |
+| **Build Tools** | Maven, CRACO |
+| **Containerization** | Docker, Docker Compose |
+| **Cloud Platforms** | Vercel, Render, Neon |
+| **Documentation** | OpenAPI, Enterprise Documentation |
+
+### 🔧 Backend Technologies
+
+- Java 21
+- Spring Boot 3.3.5
+- Spring Security
+- Spring Data JPA
+- Spring Validation
+- Spring Actuator
+- Spring WebSocket (STOMP)
+- JWT Authentication
+- Flyway Database Migration
+- PostgreSQL
+- Maven
+
+### 🎨 Frontend Technologies
+
+- React 19
+- React Router
+- React Query
+- Tailwind CSS
+- Radix UI
+- Axios
+- React Hook Form
+- Zod
+- Recharts
+- Framer Motion
+- SockJS
+- STOMP Client
+
+### ☁️ Infrastructure & DevOps
+
+- Docker
+- Docker Compose
+- Vercel
+- Render
+- Neon PostgreSQL
+- Git
+- GitHub
+
+### 📖 Development Principles
+
+- Modular Monolith Architecture
+- Clean Code
+- Layered Architecture
+- Separation of Concerns
+- REST API Design
+- API-First Development
+- Environment-Based Configuration
+- Database Version Control
+- Production-Oriented Repository Structure
+
+## 📊 Technology Compatibility
+
+| Component | Version |
+|-----------|---------|
+| Java | 21 |
+| Spring Boot | 3.3.5 |
+| React | 19 |
+| PostgreSQL | 16+ |
+| Maven | 3.9+ |
+| Docker | 24+ |
+
+
+## 📂 Project Structure
+
+```text
+Enterprise-Banking-Core-System/
+│
+├── src/                         # Spring Boot application source
 │   ├── main/
-│   │   ├── java/com/ebcs/
-│   │   │   ├── account/           # ── bounded contexts ──
-│   │   │   ├── customer/
-│   │   │   ├── product/
-│   │   │   ├── transaction/
-│   │   │   ├── deposit/
-│   │   │   ├── loan/
-│   │   │   ├── ledger/
-│   │   │   ├── document/
-│   │   │   ├── notification/
-│   │   │   ├── reports/
-│   │   │   ├── administration/
-│   │   │   ├── security/          # mfa · passwordreset · ratelimit · session
-│   │   │   ├── platform/          # auth · audit · async · events · websocket
-│   │   │   ├── integration/       # email · sms · upi
-│   │   │   ├── shared/            # base entity · errors · exceptions
-│   │   │   └── EbcsApplication.java
-│   │   └── resources/
-│   │       ├── application.yml
-│   │       └── db/migration/      # V1__init · V2__enterprise · V3__features
-│   └── test/java/com/ebcs/        # service + application tests (H2)
-└── frontend/
-    ├── Dockerfile                 # build → nginx
-    ├── nginx.conf
-    ├── package.json
-    └── src/
-        ├── pages/                 # 25 screens (Dashboard, Loans, Reports, Admin…)
-        ├── components/            # AppShell, Sidebar, DataTable, KpiCard… + ui/ (shadcn)
-        ├── contexts/              # AuthContext · ThemeContext
-        ├── hooks/                 # useStomp · useKeyboardShortcuts · use-toast
-        └── lib/                   # api · services · exporters · format
+│   └── test/
+│
+├── frontend/                    # React frontend application
+│   ├── src/
+│   ├── public/
+│   ├── plugins/
+│   └── package.json
+│
+├── docs/                        # Public project documentation
+│   ├── api/
+│   ├── architecture/
+│   ├── assets/
+│   ├── images/
+│   └── DEPLOYMENT.md
+│
+├── internal/                    # Internal engineering documents
+│   ├── ai-context/
+│   ├── audits/
+│   ├── product-management/
+│   └── research/
+│
+├── docker-compose.yml
+├── Dockerfile
+├── pom.xml
+│
+├── README.md
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── SECURITY.md
+├── CODE_OF_CONDUCT.md
+├── LICENSE
+│
+└── ...
 ```
 
----
+### 📁 Repository Organization
 
-## Getting Started
+The repository is organized into clearly separated layers to improve maintainability and scalability.
+
+| Directory | Purpose |
+|-----------|---------|
+| `src/` | Spring Boot backend source code |
+| `frontend/` | React frontend application |
+| `docs/` | Public technical documentation |
+| `internal/` | Internal planning and engineering resources |
+| Root | Repository configuration and project metadata |
+
+### 🏗️ Repository Design Principles
+
+- Clean enterprise repository layout
+- Separation of source code and documentation
+- Public and internal documentation segregation
+- Container-first deployment support
+- Modular project organization
+- Production-oriented repository structure
+
+
+> **Repository Philosophy**
+>
+> The repository is intentionally organized to resemble the structure commonly found in enterprise software projects, where application source code, public documentation, deployment assets, and internal engineering resources are maintained independently.
+
+
+
+## 🏦 Business Modules
+
+The application is organized into independent business domains following a modular monolith architecture.
+
+| Module | Responsibility |
+|---------|----------------|
+| Authentication | User authentication, JWT, authorization |
+| Customer | Customer onboarding and profile management |
+| Account | Account lifecycle management |
+| Transaction | Deposits, withdrawals, transfers |
+| Ledger | Double-entry accounting and ledger operations |
+| Loan | Loan application and disbursement |
+| Deposit | Fixed Deposit (FD) and Recurring Deposit (RD) management |
+| Product | Banking product management |
+| Administration | Users, configuration and feature management |
+| Notification | Email, SMS and push notification management |
+| Reports | Banking reports and analytics |
+| Documents | Document storage and version management |
+| Audit | Audit logging and activity tracking |
+| Security | MFA, rate limiting, password reset and session management |
+| Platform | Shared infrastructure, authentication, events and WebSocket |
+
+
+## 🗄️ Database Overview
+
+The platform uses PostgreSQL as the primary relational database with schema versioning managed through Flyway migrations.
+
+### Database Features
+
+- PostgreSQL relational database
+- Flyway schema migration
+- JPA / Hibernate ORM
+- Entity-based domain modeling
+- Version-controlled database evolution
+- Production-oriented schema management
+
+### Migration Strategy
+
+```text
+V1__init.sql
+
+↓
+
+V2__enterprise.sql
+
+↓
+
+V3__features.sql
+```
+
+## 🔐 Security Architecture
+
+The platform implements multiple security layers to protect banking operations.
+
+### Security Components
+
+- JWT Authentication
+- Spring Security
+- Role-Based Access Control (RBAC)
+- Multi-Factor Authentication (MFA)
+- Password Reset Workflow
+- Session Management
+- API Protection
+- Rate Limiting
+- CORS Configuration
+
+## ⚙️ Platform Services
+
+The platform provides shared infrastructure components used across multiple banking modules.
+
+### Shared Platform Components
+
+- Authentication Framework
+- Event Publishing
+- WebSocket Communication
+- Audit Infrastructure
+- Asynchronous Processing
+- Global Exception Handling
+- Shared DTOs
+- Shared Domain Components
+
+## ⚡ Event-Driven Architecture
+
+The application publishes domain events to decouple business operations from infrastructure concerns.
+
+### Domain Events
+
+- Customer Registration
+- User Login
+- Account Opening
+- Money Transfer
+- Loan Approval
+- Loan Disbursement
+
+These events are consumed by supporting services such as notifications, auditing, and real-time updates.
+
+## 🔌 External Integrations
+
+The platform is designed with integration points for external banking services.
+
+### Supported Integrations
+
+- Email Gateway
+- SMS Gateway
+- UPI Adapter
+- Notification Providers
+
+## 📦 Enterprise Module Organization
+
+```text
+Business Modules
+│
+├── Customer
+├── Account
+├── Transaction
+├── Ledger
+├── Loan
+├── Deposit
+├── Product
+└── Administration
+
+Platform Services
+│
+├── Authentication
+├── Security
+├── Audit
+├── Events
+├── Notification
+└── Shared Infrastructure
+```
+
+## 📡 API Overview
+
+The backend exposes RESTful APIs organized by business domains. Each module provides dedicated endpoints following REST principles and standardized request/response models.
+
+### Available API Modules
+
+| Module | Primary Operations |
+|---------|--------------------|
+| Authentication | Login, Registration, JWT Authentication |
+| Customers | Customer Management |
+| Accounts | Account Operations |
+| Transactions | Deposit, Withdraw, Transfer |
+| Loans | Apply, Approve, Disburse |
+| Deposits | FD & RD Management |
+| Products | Banking Products |
+| Ledger | Ledger Entries |
+| Administration | Users, Roles, Configuration |
+| Notifications | Notification Management |
+| Reports | Banking Reports |
+| Documents | Document Management |
+
+Interactive API documentation is available through the integrated OpenAPI (Swagger) interface.
+
+
+## 🔐 Authentication Flow
+
+```text
+User Login
+     │
+     ▼
+Spring Security
+     │
+     ▼
+Credential Validation
+     │
+     ▼
+JWT Generation
+     │
+     ▼
+Client Stores Token
+     │
+     ▼
+Authenticated API Requests
+     │
+     ▼
+Protected Banking Services
+```
+
+
+## ⚡ Real-Time Communication
+
+The platform supports real-time communication using WebSocket technology for live banking events.
+
+### Supported Capabilities
+
+- Live balance updates
+- Banking notifications
+- Event broadcasting
+- Dashboard synchronization
+
+## ☁️ Deployment Architecture
+
+```text
+                 Users
+                   │
+                   ▼
+      Vercel (React Frontend)
+                   │
+         REST API / WebSocket
+                   │
+                   ▼
+     Render (Spring Boot Backend)
+                   │
+                   ▼
+      Neon PostgreSQL Database
+```
+
+
+
+## 💻 Development Workflow
+
+```text
+Development
+
+↓
+
+Feature Implementation
+
+↓
+
+Testing
+
+↓
+
+Database Migration
+
+↓
+
+Docker Validation
+
+↓
+
+Cloud Deployment
+
+↓
+
+Documentation Update
+
+↓
+
+Production Release
+```
+
+## 🚀 Installation
 
 ### Prerequisites
-- **Docker & Docker Compose** (recommended path), or
-- **JDK 21**, **Maven 3.9+**, **Node 18+** with **Yarn**, and a local **PostgreSQL 15** for native dev
-- *(optional)* the **`tesseract`** binary on `PATH` for document OCR
 
-### Quick start (Docker Compose)
+Before running the project locally, ensure the following software is installed:
+
+- Java 21
+- Maven 3.9+
+- Node.js 20+
+- Docker & Docker Compose
+- PostgreSQL (optional when using Docker)
+
+### Clone Repository
 
 ```bash
-git clone https://github.com/<your-org>/ebcs.git
-cd ebcs
-docker compose up --build
+git clone https://github.com/anandsagar101/ebcs-banking-system.git
+
+cd ebcs-banking-system
 ```
 
-| Service        | URL |
-|----------------|-----|
-| Frontend       | http://localhost:3000 |
-| Backend API    | http://localhost:8080 |
-| Swagger UI     | http://localhost:8080/swagger-ui.html |
-| Health         | http://localhost:8080/actuator/health |
+## 💻 Local Development
 
-Create your first user via `POST /api/auth/register` (or the console's **Register** screen), then sign in.
-
-### Local development
-
-**Backend** — start a database, then run the app:
+### Backend
 
 ```bash
-docker compose up -d postgres        # or point DB_URL at your own Postgres
+./mvnw spring-boot:run
+```
+
+or
+
+```bash
 mvn spring-boot:run
 ```
 
-**Frontend**
+### Frontend
 
 ```bash
 cd frontend
+
 yarn install
-REACT_APP_BACKEND_URL=http://localhost:8080 yarn start
+
+yarn start
 ```
 
----
+## 🐳 Docker Deployment
 
-## Configuration
+Run the complete application stack using Docker Compose.
 
-The backend is fully configured through environment variables (defaults in `application.yml`):
+```bash
+docker compose up --build
+```
 
-| Variable | Default | Purpose |
-|----------|---------|---------|
-| `DB_URL` | `jdbc:postgresql://localhost:5432/ebcs` | JDBC connection string |
-| `DB_USER` / `DB_PASSWORD` | `ebcs` / `ebcs` | Database credentials |
-| `SERVER_PORT` / `PORT` | `8080` | HTTP port |
-| `JWT_SECRET` | *(change me)* | HS256 signing secret (≥ 256-bit) |
-| `JWT_EXPIRATION_MS` | `86400000` | Token lifetime (24h) |
-| `MFA_ISSUER` | `EBCS` | Issuer shown in authenticator apps |
-| `RATELIMIT_AUTH_PER_MINUTE` | `20` | Auth requests per minute |
-| `PW_RESET_TTL` | `300` | OTP validity (seconds) |
-| `PW_RESET_RESEND_COOLDOWN` | `60` | Resend cooldown (seconds) |
-| `PW_RESET_MAX_ATTEMPTS` | `5` | Max OTP attempts |
-| `CORS_ALLOWED_ORIGINS` | `*` | Allowed CORS origins |
-| `DOC_STORAGE_PATH` | `/tmp/ebcs-docs` | Document storage directory |
-| `DOC_MAX_SIZE` | `15728640` | Max upload size (bytes, 15 MB) |
-| `OCR_BINARY` | `tesseract` | OCR executable |
-| `OCR_TIMEOUT` / `OCR_MAX_CHARS` | `60` / `20000` | OCR limits |
-| `NOTIFY_EMAIL` / `NOTIFY_SMS` / `NOTIFY_PUSH` | `true` | Notification channels |
-| `RESEND_API_KEY` | *(empty)* | Resend API key for real email |
-| `RESEND_SENDER_EMAIL` | `onboarding@resend.dev` | From-address for email |
+To stop all running containers:
 
-> Without `RESEND_API_KEY`, notifications fall back to logging providers — perfect for local development.
+```bash
+docker compose down
+```
 
----
+## ⚙️ Environment Configuration
 
-## Testing
+Configure the required environment variables before starting the application.
+
+Typical configuration includes:
+
+- Database Connection
+- JWT Secret
+- Server Configuration
+- Email Provider
+- SMS Provider
+- Deployment Environment
+
+See the project documentation for complete configuration details.
+
+## 🧪 Testing
+
+Backend tests can be executed using Maven.
 
 ```bash
 mvn test
 ```
 
-Tests run against an in-memory **H2** database (`src/test/resources/application.yml`) and cover the
-service layer (e.g. `CustomerServiceTest`, `TransactionServiceTest`) plus an application context smoke test.
+The project is structured to support automated testing for backend services and business modules.
 
----
+## 📚 Documentation
 
-## Deployment
+Additional project documentation is available in the `/docs` directory.
 
-- **Backend image** — multi-stage build: `maven:3.9-eclipse-temurin-21` compiles the JAR, which is copied
-  into a slim `eclipse-temurin:21-jre` runtime running as a **non-root** user with a container **healthcheck**.
-- **Frontend image** — built and served by **nginx**; the backend URL is injected at build time via
-  `REACT_APP_BACKEND_URL`.
-- **Compose** wires PostgreSQL (with `pg_isready` healthcheck and a persistent volume), the backend, and the
-  frontend, with startup ordering via `depends_on: service_healthy`.
+Current documentation includes:
 
-For production: supply a strong `JWT_SECRET`, restrict `CORS_ALLOWED_ORIGINS`, use managed Postgres, and
-mount persistent storage for `DOC_STORAGE_PATH`.
+- Deployment Guide
+- API Documentation
+- Architecture Resources
+- Project Assets
+- Enterprise Documentation Roadmap
 
----
+The documentation is continuously expanded following an enterprise documentation workflow.
 
-## Observability
+## 🛣️ Roadmap
 
-Spring Boot Actuator exposes operational endpoints:
+Upcoming improvements include:
 
-| Endpoint | Purpose |
-|----------|---------|
-| `/actuator/health` | Liveness/readiness (used by the container healthcheck) |
-| `/actuator/info` | Build & app info |
-| `/actuator/metrics` | Application metrics |
+- Landing Page
+- Banking Analytics Dashboard
+- Enhanced Reporting
+- Additional Banking Modules
+- Performance Optimization
+- Expanded Documentation
+- CI/CD Pipeline
+- Kubernetes Deployment
 
----
+## 🤝 Contributing
 
-## Contributing
+Contributions are welcome.
 
-Contributions are welcome. Please:
+Please read:
 
-1. Fork the repo and create a feature branch (`git checkout -b feature/your-feature`).
-2. Keep changes within the relevant bounded context and add tests.
-3. Run `mvn test` before opening a PR.
-4. Open a pull request with a clear description of the change.
+- CONTRIBUTING.md
+- CODE_OF_CONDUCT.md
+- SECURITY.md
 
----
+before submitting issues or pull requests.
 
-## License
 
-Released under the **MIT License**. Add a `LICENSE` file at the repository root to make the terms explicit.
+## 📄 License
 
----
+This project is licensed under the **MIT License**.
 
-<p align="center"><sub>Built with Spring Boot, React, and a strict double-entry ledger. ⚖️</sub></p>
+See the [LICENSE](LICENSE) file for complete licensing information.
+
+## 👨‍💻 Author
+
+**Anand Sagar**
+
+Computer Science Engineering Student • Full-Stack Developer • Backend Engineering Enthusiast
+
+- **GitHub:** https://github.com/anandsagar101
+- **LinkedIn:** https://www.linkedin.com/in/anandsagar101
+
+
+## 🙏 Acknowledgements
+
+Special thanks to the open-source community and the creators of the technologies used throughout this project.
+
+This project was built using the Spring Boot, React, PostgreSQL, Docker, and many other open-source technologies that enable modern software engineering.

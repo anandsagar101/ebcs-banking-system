@@ -1,0 +1,129 @@
+<svg viewBox="0 0 1280 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="EBCS — Enterprise Banking Core System">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0A0F1E"/>
+      <stop offset="0.5" stop-color="#0D1526"/>
+      <stop offset="1" stop-color="#090D1A"/>
+    </linearGradient>
+    <linearGradient id="ink" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#C4D2EC"/>
+    </linearGradient>
+    <linearGradient id="mintbar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#34D399"/>
+      <stop offset="1" stop-color="#6EE7B7"/>
+    </linearGradient>
+    <radialGradient id="glowMint" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#34D399" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#34D399" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowIndigo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#818CF8" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#818CF8" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="round"><rect x="0" y="0" width="1280" height="360" rx="20"/></clipPath>
+    <style>
+      .mono{font-family:'SF Mono','Roboto Mono','DejaVu Sans Mono',ui-monospace,Menlo,Consolas,monospace;}
+      .sans{font-family:'Inter','Segoe UI','Helvetica Neue',system-ui,-apple-system,Arial,sans-serif;}
+    </style>
+  </defs>
+
+  <g clip-path="url(#round)">
+    <rect x="0" y="0" width="1280" height="360" fill="url(#bg)"/>
+
+    <!-- ambient glows -->
+    <rect x="-160" y="-200" width="760" height="640" fill="url(#glowMint)"/>
+    <rect x="760" y="60" width="760" height="640" fill="url(#glowIndigo)"/>
+
+    <!-- ledger-paper hairlines -->
+    <g stroke="#94A3B8" stroke-opacity="0.055">
+      <line x1="0" y1="52" x2="1280" y2="52"/><line x1="0" y1="90" x2="1280" y2="90"/>
+      <line x1="0" y1="128" x2="1280" y2="128"/><line x1="0" y1="166" x2="1280" y2="166"/>
+      <line x1="0" y1="204" x2="1280" y2="204"/><line x1="0" y1="242" x2="1280" y2="242"/>
+      <line x1="0" y1="280" x2="1280" y2="280"/><line x1="0" y1="318" x2="1280" y2="318"/>
+    </g>
+    <line x1="60" y1="0" x2="60" y2="360" stroke="#94A3B8" stroke-opacity="0.06"/>
+
+    <!-- eyebrow -->
+    <g class="mono" fill="#6EE7B7" font-size="14" letter-spacing="4">
+      <rect x="60" y="72" width="9" height="9" transform="rotate(45 64.5 76.5)" fill="#34D399"/>
+      <text x="82" y="82" font-weight="600">CORE&#160;BANKING&#160;PLATFORM</text>
+    </g>
+
+    <!-- wordmark -->
+    <text x="58" y="196" class="sans" font-size="116" font-weight="800" letter-spacing="-3" fill="url(#ink)">EBCS</text>
+    <rect x="64" y="214" width="118" height="5" rx="2.5" fill="url(#mintbar)"/>
+
+    <!-- tagline -->
+    <text x="66" y="252" class="sans" font-size="27" font-weight="600" fill="#D7E0F2" letter-spacing="0.2">Enterprise Banking Core System</text>
+
+    <!-- stack pills -->
+    <g class="mono" font-size="13" fill="#AEBAD4">
+      <g>
+        <rect x="64" y="284" width="92" height="28" rx="14" fill="#FFFFFF" fill-opacity="0.03" stroke="#94A3B8" stroke-opacity="0.20"/>
+        <text x="110" y="302" text-anchor="middle">Java 21</text>
+      </g>
+      <g>
+        <rect x="164" y="284" width="150" height="28" rx="14" fill="#FFFFFF" fill-opacity="0.03" stroke="#94A3B8" stroke-opacity="0.20"/>
+        <text x="239" y="302" text-anchor="middle">Spring Boot 3.3</text>
+      </g>
+      <g>
+        <rect x="322" y="284" width="98" height="28" rx="14" fill="#FFFFFF" fill-opacity="0.03" stroke="#94A3B8" stroke-opacity="0.20"/>
+        <text x="371" y="302" text-anchor="middle">React 19</text>
+      </g>
+      <g>
+        <rect x="428" y="284" width="140" height="28" rx="14" fill="#FFFFFF" fill-opacity="0.03" stroke="#94A3B8" stroke-opacity="0.20"/>
+        <text x="498" y="302" text-anchor="middle">PostgreSQL 15</text>
+      </g>
+      <g>
+        <rect x="576" y="284" width="120" height="28" rx="14" fill="#FFFFFF" fill-opacity="0.03" stroke="#94A3B8" stroke-opacity="0.20"/>
+        <text x="636" y="302" text-anchor="middle">JWT · MFA</text>
+      </g>
+      <g>
+        <rect x="704" y="284" width="150" height="28" rx="14" fill="#FFFFFF" fill-opacity="0.03" stroke="#94A3B8" stroke-opacity="0.20"/>
+        <text x="779" y="302" text-anchor="middle">REST · WebSocket</text>
+      </g>
+    </g>
+
+    <!-- signature: double-entry ledger balance -->
+    <g>
+      <rect x="908" y="64" width="308" height="232" rx="16" fill="#FFFFFF" fill-opacity="0.022" stroke="#94A3B8" stroke-opacity="0.14"/>
+      <text x="1062" y="93" text-anchor="middle" class="mono" font-size="12" letter-spacing="2.5" fill="#8B98B4">DOUBLE-ENTRY LEDGER</text>
+      <text x="988" y="115" text-anchor="middle" class="mono" font-size="11" letter-spacing="1" fill="#A5B4FC">DR</text>
+      <text x="1136" y="115" text-anchor="middle" class="mono" font-size="11" letter-spacing="1" fill="#6EE7B7">CR</text>
+
+      <!-- axis -->
+      <line x1="1062" y1="126" x2="1062" y2="250" stroke="#94A3B8" stroke-opacity="0.35"/>
+
+      <!-- rows: debit (indigo) left, credit (mint) right -->
+      <!-- r1 -->
+      <rect x="996" y="131.5" width="64" height="9" rx="4.5" fill="#818CF8" fill-opacity="0.85"/>
+      <rect x="1064" y="131.5" width="34" height="9" rx="4.5" fill="#34D399" fill-opacity="0.85"/>
+      <circle cx="1062" cy="136" r="2.6" fill="#CBD5E1"/>
+      <!-- r2 -->
+      <rect x="1020" y="155.5" width="40" height="9" rx="4.5" fill="#818CF8" fill-opacity="0.85"/>
+      <rect x="1064" y="155.5" width="72" height="9" rx="4.5" fill="#34D399" fill-opacity="0.85"/>
+      <circle cx="1062" cy="160" r="2.6" fill="#CBD5E1"/>
+      <!-- r3 highlighted balanced -->
+      <rect x="964" y="176" width="200" height="17" rx="8" fill="#6EE7B7" fill-opacity="0.06"/>
+      <rect x="972" y="179.5" width="88" height="9" rx="4.5" fill="#A5B4FC"/>
+      <rect x="1064" y="179.5" width="88" height="9" rx="4.5" fill="#6EE7B7"/>
+      <circle cx="1062" cy="184" r="3" fill="#FFFFFF"/>
+      <text x="1176" y="188" class="mono" font-size="14" fill="#6EE7B7" font-weight="700">=</text>
+      <!-- r4 -->
+      <rect x="1030" y="203.5" width="30" height="9" rx="4.5" fill="#818CF8" fill-opacity="0.85"/>
+      <rect x="1064" y="203.5" width="54" height="9" rx="4.5" fill="#34D399" fill-opacity="0.85"/>
+      <circle cx="1062" cy="208" r="2.6" fill="#CBD5E1"/>
+      <!-- r5 -->
+      <rect x="990" y="227.5" width="70" height="9" rx="4.5" fill="#818CF8" fill-opacity="0.85"/>
+      <rect x="1064" y="227.5" width="44" height="9" rx="4.5" fill="#34D399" fill-opacity="0.85"/>
+      <circle cx="1062" cy="232" r="2.6" fill="#CBD5E1"/>
+
+      <!-- balanced chip -->
+      <rect x="1002" y="262" width="120" height="22" rx="11" fill="#34D399" fill-opacity="0.10" stroke="#34D399" stroke-opacity="0.35"/>
+      <text x="1062" y="277" text-anchor="middle" class="mono" font-size="11" letter-spacing="1.5" fill="#6EE7B7">Σ BALANCED</text>
+    </g>
+  </g>
+
+  <rect x="0.5" y="0.5" width="1279" height="359" rx="20" fill="none" stroke="#94A3B8" stroke-opacity="0.16"/>
+</svg>
