@@ -1,95 +1,111 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# ==========================================================
+# EBCS - Enterprise Banking Core System
+# .gitignore
+# ==========================================================
 
-# IDE and editors
+# ----------------------------
+# IDE / Editors
+# ----------------------------
 .idea/
 .vscode/
+*.iml
 
-# Dependencies
+# ----------------------------
+# Operating System
+# ----------------------------
+.DS_Store
+Thumbs.db
+
+# ----------------------------
+# Java / Spring Boot
+# ----------------------------
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Maven Wrapper Logs
+.mvn/wrapper/maven-wrapper.jar
+
+# ----------------------------
+# React
+# ----------------------------
 node_modules/
-/node_modules
-/.pnp
-.pnp.js
-.yarn/install-state.gz
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+build/
 
-# Testing
-/coverage
-
-# Next.js
-/.next/
-/out/
-next-env.d.ts
-*.tsbuildinfo
-
-# Production builds
-/build
-dist/
-dist
-
-# Environment files (comprehensive coverage)
-
-*token.json*
-*credentials.json*
-
-# Logs and debug files
+# Yarn / NPM
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
-dump.rdb
 
-# System files
-.DS_Store
-*.pem
-
-# Python
-__pycache__/
-*pyc*
-venv/
-.venv/
-
-# Development tools
-chainlit.md
-.chainlit
-.ipynb_checkpoints/
-.ac
-
-# Deployment
-.vercel
-
-# Data and databases
-agenthub/agents/youtube/db
-
-# Archive files and large assets
-**/*.zip
-**/*.tar.gz
-**/*.tar
-**/*.tgz
-*.pack
-*.deb
-*.dylib
-
-# Build caches
-.cache/
-
-memory/test_credentials.md
-
-# Mobile development
-android-sdk/
-# Java
-target/
-
-# Environment
+# ----------------------------
+# Environment Variables
+# ----------------------------
 .env
-*.env
+.env.*
+!.env.example
 
-# Emergent
-.emergent/
+# ----------------------------
+# Build / Cache
+# ----------------------------
+.cache/
+coverage/
 
-frontend/node_modules/.cache/default-development/2.pack
-frontend/node_modules/.cache/default-development/0.pack
-frontend/node_modules/.cache/default-development/3.pack
+# ----------------------------
+# Logs
+# ----------------------------
+logs/
+*.log
+
+# ----------------------------
+# Security
+# ----------------------------
+*.pem
+*.key
+*.p12
+*.jks
+
+credentials.json
+token.json
+
+# ----------------------------
+# Docker
+# ----------------------------
+docker-data/
+
+# ----------------------------
+# Database Dumps
+# ----------------------------
+*.sql
+*.dump
+*.bak
+
+# ----------------------------
+# Archives
+# ----------------------------
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+
+# ----------------------------
+# Temporary Files
+# ----------------------------
+*.tmp
+*.temp
+*.swp
+*~
+
+# ----------------------------
+# Documentation Assets
+# ----------------------------
+docs/assets/generated/
+
+# ----------------------------
+# Local Testing
+# ----------------------------
+test-output/
+
